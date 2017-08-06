@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>d3 test</title>
+		<style>
+			.axis path,
+			.axis line{
+				fill: none;
+				stroke: red;
+				shape-rendering: crispedges;//显示轴
+			}
+			
+			.axis text{
+				font-family: sans-serif;
+				font-size: 11px;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="d3.v3.min.js"></script>
+		<script>
+			
+			var fruits = [
+			  {name: "orange", value: 200},
+			  {name: "apple", value: 124},
+			  {name: "banana", value: 32}
+			];
+			
+			var fruits2 = [
+			  {name: "apple", value: 124},
+			  {name: "lemon", value: 17},
+			  {name: "banana", value: 32},
+			  {name: "strawberry", value: 1465}
+			];
+			
+
+			var div = d3.select("body").selectAll("div")
+						.data(fruits)
+						.enter()
+						.append("div")
+						.text(function(d){
+							return d.name + ": " + d.value;
+						});
+						
+			var div = d3.select("body").selectAll("div")
+						.data(fruits2,function(d){
+							return d.name;
+						});
+						
+				div.enter()
+					.append("div")
+					.text(function(d){
+						return d.name + ": " + d.value;
+					});
+				
+				div.exit().remove();//删除多余
+				
+				div.order();//快速排序
+		</script>
+	</body>
+</html
